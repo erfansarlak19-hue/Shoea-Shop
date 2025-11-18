@@ -1,13 +1,16 @@
-import '../src/style/style.css'
-import { router } from './components/utils/router';
-import { OnboardingPage1 } from './pages/onboardingPage/onboardingPage1';
-import { OnboardingPage2 } from './pages/onboardingPage/onboardingPage2';
-
+import "swiper/css";
+import "../src/style/style.css";
+import { router } from "./components/utils/router";
+import { OnboardingPage } from "./pages/onboarding/onboarding";
+import { OnboardingPage2 } from "./components/onboarding/onboarding2";
+import { OnboardingSwiper } from "./components/onboarding/onboardingSwiper";
+import { LoginPage } from "./pages/login/login";
 
 const app = document.getElementById("app");
-app.append(OnboardingPage1(), OnboardingPage2);
 
-router.addRoute("/", OnboardingPage1);
-router.addRoute("/onboarding-2", OnboardingPage2);
+router.addRoute("/", OnboardingPage);
+router.addRoute("/onboarding2", OnboardingPage2);
+router.addRoute("/onboarding3", OnboardingSwiper);
+router.addRoute("/login", LoginPage)
 
 router.init(app);
