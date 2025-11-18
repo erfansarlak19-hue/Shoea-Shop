@@ -60,11 +60,7 @@ export function OnboardingSwiper() {
 					{
 						event: "click",
 						callback: () => {
-							if (swiperInstance) {
-								swiperInstance.slideNext();
-							} else {
 								router.navigate("/login");
-							}
 						},
 					},
 				],
