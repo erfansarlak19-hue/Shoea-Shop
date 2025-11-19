@@ -3,7 +3,7 @@ import { El } from "../utils/el";
 export function Footer(){
   return El({
 		element: "div",
-		className: "flex fixed bottom-0 h-17 w-107 justify-center gap-9",
+		className: "flex fixed bottom-0 h-17 w-107 justify-center items-center gap-9",
 		children: [
 			El({
 				element: "img",

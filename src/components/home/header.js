@@ -27,16 +27,16 @@ export function Header() {
 					}),
 					El({
 						element: "div",
-						className: "flex pr-7 gap-4",
+						className: "flex pr-7 gap-4  ",
 						children: [
 							El({
 								element: "img",
-								className: "w-7 h-8",
+								className: "w-7 h-8 p-0.5",
 								src: "./public/svg/bell.svg",
 							}),
 							El({
 								element: "img",
-								className: "w-7 h-8 ",
+								className: "w-7 h-8 p-0.5 ",
 								src: "./public/svg/heart.svg",
 							}),
 						],
