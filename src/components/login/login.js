@@ -114,6 +114,14 @@ export function Login() {
 						className:
 							"bg-[#6e7174] w-[380px] h-[47px] hover:bg-[#212529] text-white rounded-4xl",
 						innerText: "Signin",
+						eventListener:[
+							{
+								event:"click",
+								callback:()=>{
+									router.navigate("/home")
+								}
+							}
+						]
 					}),
 				],
 			}),
