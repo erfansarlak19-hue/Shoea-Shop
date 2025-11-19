@@ -1,4 +1,5 @@
 import { El } from "../utils/el";
+import { router } from "../utils/router";
 
 export function Header() {
 	return El({
@@ -55,7 +56,15 @@ export function Header() {
 					El({
 						element: "input",
 						className: "bg-[#fafafa] h-9 w-95 rounded-sm px-8 py-1",
-						placeholder: "Username",
+						placeholder: "Search",
+						eventListener:[
+							{
+								event:"click",
+								callback:()=>{
+									router.navigate("/search")
+								}
+							}
+						]
 					}),
 				],
 			}),

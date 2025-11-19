@@ -7,6 +7,7 @@ import { OnboardingSwiper } from "./components/onboarding/onboardingSwiper";
 import { LoginPage } from "./pages/login/login";
 import { Signup } from "./components/login/signup";
 import { HomePage } from "./pages/home/home";
+import { SearchPage } from "./pages/search/search";
 
 const app = document.getElementById("app");
 
@@ -16,4 +17,5 @@ router.addRoute("/onboarding3", OnboardingSwiper);
 router.addRoute("/login", LoginPage);
 router.addRoute("/signup", Signup);
 router.addRoute("/home", HomePage)
+router.addRoute("/search", SearchPage)
 router.init(app);

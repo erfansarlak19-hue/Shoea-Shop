@@ -14,14 +14,14 @@ export function Login() {
 						element: "img",
 						className: "w-[25px] ",
 						src: "./public/svg/arrow-left-svgrepo-com.svg",
-						eventListener:[
+						eventListener: [
 							{
-								event:"click",
-								callback :()=>{
-									router.navigate("/onboarding3")
-								}
-							}
-						]
+								event: "click",
+								callback: () => {
+									router.navigate("/onboarding3");
+								},
+							},
+						],
 					}),
 				],
 			}),
@@ -65,6 +65,7 @@ export function Login() {
 								element: "input",
 								className: "bg-[#fafafa]  rounded-sm w-full px-8 py-1",
 								placeholder: "Username",
+								id: "username",
 							}),
 						],
 					}),
@@ -76,24 +77,33 @@ export function Login() {
 								element: "img",
 								className: "absolute top-2 left-2 z-10 cursor-pointer",
 								src: "./public/svg/lock-fill.svg",
+								alt: "password",
 							}),
 							El({
 								element: "input",
 								className: "bg-[#fafafa]  rounded-sm w-full px-8 py-1",
 								placeholder: "Password",
+								id: "password",
+								type: type,
 							}),
 							El({
 								element: "img",
 								className:
 									"absolute top-2 right-2 z-10 cursor-pointer opacity-50 hover:opacity-100",
 								src: "./public/svg/input-suffix.svg",
-								alt: "",
+								eventListener: [
+									{
+										event: "click",
+										callback: togglePassword,
+									},
+								],
 							}),
 						],
 					}),
 					El({
 						element: "a",
 						innerText: "Signup",
+						className: "cursor-pointer",
 						eventListener: [
 							{
 								event: "click",
@@ -112,19 +122,29 @@ export function Login() {
 					El({
 						element: "button",
 						className:
-							"bg-[#6e7174] w-[380px] h-[47px] hover:bg-[#212529] text-white rounded-4xl",
+							"bg-[#6e7174] cursor-pointer w-[380px] h-[47px] hover:bg-[#212529] text-white rounded-4xl",
 						innerText: "Signin",
-						eventListener:[
+						eventListener: [
 							{
-								event:"click",
-								callback:()=>{
-									router.navigate("/home")
-								}
-							}
-						]
+								event: "click",
+								callback: () => {
+									router.navigate("/home");
+								},
+							},
+						],
 					}),
 				],
 			}),
 		],
 	});
+}
+let type = "password";
+function togglePassword() {
+	if (type === "password") {
+		document.getElementById("password").setAttribute("type", "text");
+		type = "text";
+	} else {
+		document.getElementById("password").setAttribute("type", "password");
+		type = "password";
+	}
 }

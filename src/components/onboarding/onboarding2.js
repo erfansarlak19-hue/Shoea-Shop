@@ -14,7 +14,7 @@ export function OnboardingPage2() {
 			}),
 			El({
 				element: "div",
-				className: "absolute inset-0 h-full bg-gradient-to-t from-black/80",
+				className: "absolute inset-0 h-full bg-linear-to-t from-black/80",
 			}),
 			El({
 				element: "div",

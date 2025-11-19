@@ -65,6 +65,7 @@ export function Signup() {
 								element: "input",
 								className: "bg-[#fafafa]  rounded-sm w-full px-8 py-1",
 								placeholder: "Username",
+								id: "username",
 							}),
 						],
 					}),
@@ -76,23 +77,32 @@ export function Signup() {
 								element: "img",
 								className: "absolute top-2 left-2 z-10 cursor-pointer",
 								src: "./public/svg/lock-fill.svg",
+								alt: "password",
 							}),
 							El({
 								element: "input",
 								className: "bg-[#fafafa]  rounded-sm w-full px-8 py-1",
 								placeholder: "Password",
+								id: "password",
+								type: type,
 							}),
 							El({
 								element: "img",
 								className:
 									"absolute top-2 right-2 z-10 cursor-pointer opacity-50 hover:opacity-100",
 								src: "./public/svg/input-suffix.svg",
-								alt: "",
+								eventListener: [
+									{
+										event: "click",
+										callback: togglePassword,
+									},
+								],
 							}),
 						],
 					}),
 					El({
 						element: "a",
+						className: "cursor-pointer",
 						innerText: "Login",
 						eventListener: [
 							{
@@ -112,19 +122,29 @@ export function Signup() {
 					El({
 						element: "button",
 						className:
-							"bg-[#6e7174] w-[380px] h-[47px] hover:bg-[#212529] text-white rounded-4xl",
+							"bg-[#6e7174] cursor-pointer w-[380px] h-[47px] hover:bg-[#212529] text-white rounded-4xl",
 						innerText: "Signup",
-            eventListener:[
-              {
-                event:"click",
-                callback:()=>{
-                  router.navigate("/login")
-                }
-              }
-            ]
+						eventListener: [
+							{
+								event: "click",
+								callback: () => {
+									router.navigate("/login");
+								},
+							},
+						],
 					}),
 				],
 			}),
 		],
 	});
+}
+let type = "password";
+function togglePassword() {
+	if (type === "password") {
+		document.getElementById("password").setAttribute("type", "text");
+		type = "text";
+	} else {
+		document.getElementById("password").setAttribute("type", "password");
+		type = "password";
+	}
 }
