@@ -1,7 +1,7 @@
 import { El } from "../utils/el";
 import { router } from "../utils/router";
 
-export function Login() {
+export function Signup() {
 	return El({
 		element: "div",
 		className: "bg-[#ffffff] flex flex-col",
@@ -14,14 +14,14 @@ export function Login() {
 						element: "img",
 						className: "w-[25px] ",
 						src: "./public/svg/arrow-left-svgrepo-com.svg",
-						eventListener:[
+						eventListener: [
 							{
-								event:"click",
-								callback :()=>{
-									router.navigate("/onboarding3")
-								}
-							}
-						]
+								event: "click",
+								callback: () => {
+									router.navigate("/onboarding3");
+								},
+							},
+						],
 					}),
 				],
 			}),
@@ -42,7 +42,7 @@ export function Login() {
 				children: [
 					El({
 						element: "h1",
-						innerText: "Login to Your Account",
+						innerText: "Signup to Your Account",
 						className: "flex justify-center text-[32px] font-bold",
 					}),
 				],
@@ -93,12 +93,12 @@ export function Login() {
 					}),
 					El({
 						element: "a",
-						innerText: "Signup",
+						innerText: "Login",
 						eventListener: [
 							{
 								event: "click",
 								callback: () => {
-									router.navigate("/signup");
+									router.navigate("/login");
 								},
 							},
 						],
@@ -113,7 +113,7 @@ export function Login() {
 						element: "button",
 						className:
 							"bg-[#6e7174] w-[380px] h-[47px] hover:bg-[#212529] text-white rounded-4xl",
-						innerText: "Signin",
+						innerText: "Signup",
 					}),
 				],
 			}),
