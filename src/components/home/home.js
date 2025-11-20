@@ -1,4 +1,5 @@
 import { El } from "../utils/el";
+import { router } from "../utils/router";
 import { Footer } from "./footer";
 import { Header } from "./header";
 
@@ -48,17 +49,25 @@ export function Home() {
 							El({
 								element: "div",
 								className: "h-61 w-46 flex flex-col gap-2",
+								eventListener:[
+									{
+										event:"click",
+										callback:()=>{
+											router.navigate("/product")
+										}
+									}
+								],
 								children: [
 									El({
 										element: "div",
 										className:
-											"w-46 h-46 rounded-xl  bg-[#f3f3f3] flex justify-center items-center",
+											"w-46 h-46 rounded-3xl  bg-[#f3f3f3] flex justify-center items-center",
 										children: [
 											El({
 												element: "img",
 												src: "",
 												className:
-													"w-36 h-36 object-contain rounded-lg bg-gray-100",
+													"w-36 h-36 object-contain rounded-3xl",
 											}),
 										],
 									}),

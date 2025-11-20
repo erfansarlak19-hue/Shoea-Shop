@@ -8,6 +8,7 @@ import { LoginPage } from "./pages/login/login";
 import { Signup } from "./components/login/signup";
 import { HomePage } from "./pages/home/home";
 import { SearchPage } from "./pages/search/search";
+import { Product } from "./components/home/product";
 
 const app = document.getElementById("app");
 
@@ -18,4 +19,5 @@ router.addRoute("/login", LoginPage);
 router.addRoute("/signup", Signup);
 router.addRoute("/home", HomePage)
 router.addRoute("/search", SearchPage)
+router.addRoute("/product", Product)
 router.init(app);
