@@ -9,6 +9,7 @@ import { Signup } from "./components/login/signup";
 import { HomePage } from "./pages/home/home";
 import { SearchPage } from "./pages/search/search";
 import { Product } from "./components/home/product";
+import { CardsPage } from "./pages/cards/cards";
 
 const app = document.getElementById("app");
 
@@ -20,4 +21,5 @@ router.addRoute("/signup", Signup);
 router.addRoute("/home", HomePage)
 router.addRoute("/search", SearchPage)
 router.addRoute("/product", Product)
+router.addRoute("/card", CardsPage)
 router.init(app);

@@ -11,11 +11,11 @@ export function Home() {
 			Header(),
 			El({
 				element: "div",
-				className: "h-213 flex flex-col gap-5",
+				className: "h-213 pt-38 flex flex-col gap-3",
 				children: [
 					El({
 						element: "div",
-						className: "flex justify-between pt-39 pl-5 pr-5",
+						className: "flex justify-between  pl-5 pr-5",
 						children: [
 							El({
 								element: "p",
@@ -31,7 +31,8 @@ export function Home() {
 					}),
 					El({
 						element: "div",
-						className: "flex pl-5 gap-3 overflow-x-auto hide-scrollbar h-14",
+						className:
+							"flex pl-5 items-center gap-3 overflow-x-auto hide-scrollbar h-18 bg-white",
 						children: [
 							El({
 								element: "button",
@@ -44,18 +45,18 @@ export function Home() {
 					El({
 						element: "div",
 						className:
-							" pl-5 pr-5 grid grid-cols-2 gap-5 overflow-auto hide-scrollbar",
+							"pl-5 pr-5 h-auto grid grid-cols-2 gap-5 overflow-auto hide-scrollbar",
 						children: [
 							El({
 								element: "div",
-								className: "h-61 w-46 flex flex-col gap-2",
-								eventListener:[
+								className: "shrink-0 h-61 w-46 flex flex-col gap-2",
+								eventListener: [
 									{
-										event:"click",
-										callback:()=>{
-											router.navigate("/product")
-										}
-									}
+										event: "click",
+										callback: () => {
+											router.navigate("/product");
+										},
+									},
 								],
 								children: [
 									El({
@@ -66,8 +67,7 @@ export function Home() {
 											El({
 												element: "img",
 												src: "",
-												className:
-													"w-36 h-36 object-contain rounded-3xl",
+												className: "w-36 h-36 object-contain rounded-3xl",
 											}),
 										],
 									}),
@@ -90,6 +90,7 @@ export function Home() {
 									}),
 								],
 							}),
+							
 						],
 					}),
 				],
