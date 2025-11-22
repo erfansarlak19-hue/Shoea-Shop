@@ -13,6 +13,7 @@ import { CardsPage } from "./pages/cards/cards";
 import { CheckoutPage } from "./pages/checkout/checkout";
 import { ShippingAddres } from "./components/checkout/shipping-addres";
 import { ChooseShipping } from "./components/checkout/choose-shiping";
+import { PaymentMethods } from "./components/checkout/payment-methods";
 
 const app = document.getElementById("app");
 
@@ -28,4 +29,5 @@ router.addRoute("/card", CardsPage);
 router.addRoute("/checkout", CheckoutPage);
 router.addRoute("/shipping-address", ShippingAddres);
 router.addRoute("/choose-shipping", ChooseShipping);
+router.addRoute("/payment-methods", PaymentMethods);
 router.init(app);

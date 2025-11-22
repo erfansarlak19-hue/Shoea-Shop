@@ -1,14 +1,15 @@
 import { El } from "../utils/el";
 import { router } from "../utils/router";
 
-export function ChooseShipping(){
-  return El({
+export function PaymentMethods() {
+	return El({
 		element: "div",
-		className: "flex flex-col bg-[#f9f9fa] w-full h-232",
+		className: "flex flex-col",
 		children: [
 			El({
 				element: "div",
-				className: "  h-22 flex pl-6 pr-6 items-center ",
+				className:
+					"fixed w-full bg-[#f9f9fa] flex justify-between h-22 pl-6 pr-6 items-center ",
 				children: [
 					El({
 						element: "div",
@@ -30,15 +31,22 @@ export function ChooseShipping(){
 							El({
 								element: "p",
 								className: "font-semibold text-2xl",
-								innerText: "Choose Shipping",
+								innerText: "Payment Methods",
 							}),
 						],
+					}),
+					El({
+						element: "img",
+						className: "w-7",
+						src: "./public/svg/plus-square-svgrepo-com.svg",
 					}),
 				],
 			}),
 			El({
 				element: "div",
-				className: " flex flex-col gap-5 w-full bg-[#f9f9fa] pl-6 pr-6",
+				className:
+					"mt-22 bg-[#f9f9fa] text-[#424242] pl-6 pr-6 flex flex-col gap-5 pb-50",
+				innerText: "Select the payment methods you want to use.",
 				children: [
 					El({
 						element: "div",
@@ -47,7 +55,7 @@ export function ChooseShipping(){
 						children: [
 							El({
 								element: "div",
-								className: "flex gap-4",
+								className: "flex items-center gap-4",
 								children: [
 									El({
 										element: "div",
@@ -55,26 +63,15 @@ export function ChooseShipping(){
 										children: [
 											El({
 												element: "img",
-												className: "bg-black rounded-full w-13 p-3",
-												src: "./public/svg/box-tick-svgrepo-com (2).svg",
+												className: "w-9",
+												src: "./public/svg/wallet-svgrepo-com.svg",
 											}),
 										],
 									}),
 									El({
-										element: "div",
-										className: "flex flex-col gap-2",
-										children: [
-											El({
-												element: "p",
-												className: "font-bold",
-												innerText: "Economy",
-											}),
-											El({
-												element: "p",
-												className: "text-sm text-[#605f5d]",
-												innerText: "Estimated Arrival, Des 20-23",
-											}),
-										],
+										element: "p",
+										className: "font-bold text-black",
+										innerText: "My Wallet",
 									}),
 								],
 							}),
@@ -85,7 +82,7 @@ export function ChooseShipping(){
 									El({
 										element: "p",
 										className: "font-bold",
-										innerText: "$10",
+										innerText: "$9.379",
 									}),
 									El({
 										element: "input",
@@ -103,7 +100,7 @@ export function ChooseShipping(){
 						children: [
 							El({
 								element: "div",
-								className: "flex gap-4",
+								className: "flex items-center gap-4",
 								children: [
 									El({
 										element: "div",
@@ -111,26 +108,15 @@ export function ChooseShipping(){
 										children: [
 											El({
 												element: "img",
-												className: "bg-black rounded-full w-13 p-3",
-												src: "./public/svg/shippingbox-svgrepo-com (1).svg",
+												className: "w-9",
+												src: "./public/svg/paypal-svgrepo-com (1).svg",
 											}),
 										],
 									}),
 									El({
-										element: "div",
-										className: "flex flex-col gap-2",
-										children: [
-											El({
-												element: "p",
-												className: "font-bold",
-												innerText: "Regular",
-											}),
-											El({
-												element: "p",
-												className: "text-sm text-[#605f5d]",
-												innerText: "Estimated Arrival, Des 20-22",
-											}),
-										],
+										element: "p",
+										className: "font-bold text-black",
+										innerText: "My Wallet",
 									}),
 								],
 							}),
@@ -141,7 +127,7 @@ export function ChooseShipping(){
 									El({
 										element: "p",
 										className: "font-bold",
-										innerText: "$15",
+										innerText: "",
 									}),
 									El({
 										element: "div",
@@ -158,7 +144,7 @@ export function ChooseShipping(){
 						children: [
 							El({
 								element: "div",
-								className: "flex gap-4",
+								className: "flex items-center gap-4",
 								children: [
 									El({
 										element: "div",
@@ -166,26 +152,15 @@ export function ChooseShipping(){
 										children: [
 											El({
 												element: "img",
-												className: "bg-black rounded-full w-13 p-3",
-												src: "./public/svg/truck-svgrepo-com (1).svg",
+												className: "w-9",
+												src: "./public/svg/google-svgrepo-com.svg",
 											}),
 										],
 									}),
 									El({
-										element: "div",
-										className: "flex flex-col gap-2",
-										children: [
-											El({
-												element: "p",
-												className: "font-bold",
-												innerText: "Cargo",
-											}),
-											El({
-												element: "p",
-												className: "text-sm text-[#605f5d]",
-												innerText: "Estimated Arrival, Des 19-20",
-											}),
-										],
+										element: "p",
+										className: "font-bold text-black",
+										innerText: "My Wallet",
 									}),
 								],
 							}),
@@ -196,7 +171,7 @@ export function ChooseShipping(){
 									El({
 										element: "p",
 										className: "font-bold",
-										innerText: "$20",
+										innerText: "",
 									}),
 									El({
 										element: "div",
@@ -213,7 +188,7 @@ export function ChooseShipping(){
 						children: [
 							El({
 								element: "div",
-								className: "flex gap-4",
+								className: "flex items-center gap-4",
 								children: [
 									El({
 										element: "div",
@@ -221,26 +196,15 @@ export function ChooseShipping(){
 										children: [
 											El({
 												element: "img",
-												className: "bg-black rounded-full w-13 p-3",
-												src: "./public/svg/fast-delivery-svgrepo-com.svg",
+												className: "w-9",
+												src: "./public/svg/apple-svgrepo-com.svg",
 											}),
 										],
 									}),
 									El({
-										element: "div",
-										className: "flex flex-col gap-2",
-										children: [
-											El({
-												element: "p",
-												className: "font-bold",
-												innerText: "Express",
-											}),
-											El({
-												element: "p",
-												className: "text-sm text-[#605f5d]",
-												innerText: "Estimated Arrival, Des 18-19",
-											}),
-										],
+										element: "p",
+										className: "font-bold text-black",
+										innerText: "My Wallet",
 									}),
 								],
 							}),
@@ -251,7 +215,51 @@ export function ChooseShipping(){
 									El({
 										element: "p",
 										className: "font-bold",
-										innerText: "$30",
+										innerText: "",
+									}),
+									El({
+										element: "div",
+										className: "w-5 h-5 border rounded-full",
+									}),
+								],
+							}),
+						],
+					}),
+					El({
+						element: "div",
+						className:
+							"flex justify-between items-center pl-4 pr-4 h-22 rounded-3xl bg-white",
+						children: [
+							El({
+								element: "div",
+								className: "flex items-center gap-4",
+								children: [
+									El({
+										element: "div",
+										className: " flex items-center justify-center",
+										children: [
+											El({
+												element: "img",
+												className: "w-9",
+												src: "./public/svg/mastercard-svgrepo-com.svg",
+											}),
+										],
+									}),
+									El({
+										element: "p",
+										className: "font-bold text-black",
+										innerText: "My Wallet",
+									}),
+								],
+							}),
+							El({
+								element: "div",
+								className: "flex gap-4  justify-center items-center pr-1",
+								children: [
+									El({
+										element: "p",
+										className: "font-bold",
+										innerText: "",
 									}),
 									El({
 										element: "div",
@@ -271,7 +279,7 @@ export function ChooseShipping(){
 					El({
 						element: "button",
 						className: "bg-[#101010] h-14 rounded-4xl w-full text-white",
-						innerText: "Apply",
+						innerText: "Confirm Payment",
 					}),
 				],
 			}),

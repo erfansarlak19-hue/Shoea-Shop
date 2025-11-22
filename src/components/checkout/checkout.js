@@ -356,8 +356,21 @@ export function Checkout() {
 				children: [
 					El({
 						element: "button",
-						className: "bg-[#101010] h-14 rounded-4xl w-full text-white",
+						className: "bg-[#101010] pr-10 h-14 rounded-4xl w-full text-white",
 						innerText: "Continue to Payment",
+						eventListener: [
+							{
+								event: "click",
+								callback: () => {
+									router.navigate("/payment-methods");
+								},
+							},
+						],
+					}),
+					El({
+						element: "img",
+						className: "absolute w-5 right-30",
+						src: "./public/svg/turn-right-arrow-svgrepo-com.svg",
 					}),
 				],
 			}),
