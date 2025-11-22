@@ -45,7 +45,7 @@ export function Checkout() {
 			El({
 				element: "div",
 				className:
-					" flex flex-col mt-22 gap-5 fixed w-full  bg-[#f8f8f8] pl-6 pr-6",
+					" flex flex-col mt-22 gap-4 w-full  bg-[#f8f8f8] pl-6 pr-6 overflow-auto hide-scrollbar ",
 				children: [
 					El({
 						element: "p",
@@ -95,14 +95,164 @@ export function Checkout() {
 								element: "img",
 								className: "w-5",
 								src: "./public/svg/edit-svgrepo-com.svg",
-								eventListener:[
+								eventListener: [
 									{
-										event:"click",
-										callback:()=>{
-											router.navigate("/shipping-address")
-										}
-									}
-								]
+										event: "click",
+										callback: () => {
+											router.navigate("/shipping-address");
+										},
+									},
+								],
+							}),
+						],
+					}),
+					El({
+						element: "div",
+						className: "flex flex-col gap-4",
+						children: [
+							El({
+								element: "div",
+								className: "w-95 h-px bg-[#eeefef] my-2",
+							}),
+							El({
+								element: "p",
+								className: "font-semibold text-[20px]",
+								innerText: "Order List",
+							}),
+							El({
+								element: "div",
+								className: " flex flex-col gap-6",
+								children: [
+									El({
+										element: "div",
+										className:
+											"shrink-0 h-42 flex gap-4 pl-5 pr-5 rounded-3xl bg-[#ffffff] items-center",
+										children: [
+											El({
+												element: "div",
+												className:
+													"w-42 h-33 rounded-3xl bg-[#f3f3f3] flex justify-center items-center",
+												children: [
+													El({
+														element: "img",
+														src: "",
+														className: "w-27 h-27 object-contain rounded-3xl",
+													}),
+												],
+											}),
+											El({
+												element: "div",
+												className: "flex flex-col gap-4",
+												children: [
+													El({
+														element: "div",
+														className: "flex",
+														children: [
+															El({
+																element: "p",
+																className:
+																	"text-[18px] font-bold text-[#152536] truncate",
+																innerText: "K-Swiss ista Train saer",
+															}),
+														],
+													}),
+													El({
+														element: "div",
+														className: "flex items-center gap-2",
+														children: [
+															El({
+																element: "div",
+																className: "bg-black mt-1 w-4 h-4 rounded-full",
+															}),
+															El({
+																element: "p",
+																className: "text-[#646360] text-sm",
+																innerText: "black",
+															}),
+															El({
+																element: "div",
+																className: "w-px ml-1 h-4 bg-[#646360] ",
+															}),
+															El({
+																element: "p",
+																className: "text-[#646360] text-sm",
+																innerText: "size = 42",
+															}),
+														],
+													}),
+													El({
+														element: "div",
+														className: "flex justify-between",
+														children: [
+															El({
+																element: "div",
+																className: "font-semibold",
+																innerText: "$105.00",
+															}),
+															El({
+																element: "div",
+																className:
+																	"flex bg-[#f3f3f3] justify-center gap-4 items-center w-10 h-10 rounded-3xl",
+																children: [
+																	El({
+																		element: "div",
+																		className: "font-semibold",
+																		innerText: "1",
+																	}),
+																],
+															}),
+														],
+													}),
+												],
+											}),
+										],
+									}),
+								],
+							}),
+						],
+					}),
+					El({
+						element: "div",
+						className: "flex flex-col gap-4",
+						children: [
+							El({
+								element: "div",
+								className: "w-95 h-px bg-[#eeefef] my-2",
+							}),
+							El({
+								element: "p",
+								className: "font-semibold text-[20px]",
+								innerText: "Choose Shipping",
+							}),
+							El({
+								element: "div",
+								className:
+									"flex bg-white h-17 pr-5 rounded-3xl justify-between items-center",
+								children: [
+									El({
+										element: "img",
+										className: "absolute w-8 left-12",
+										src: "./public/svg/truck-svgrepo-com.svg",
+									}),
+									El({
+										element: "p",
+										className: "font-semibold text-[18px] pl-16",
+										innerText: "Choose Shipping Type",
+									}),
+									El({
+										element: "img",
+										className: "w-5",
+										src: "./public/svg/arrow-right-333-svgrepo-com.svg",
+										eventListener:[
+											{
+												event:"click",
+												callback:()=>{
+													router.navigate("/choose-shipping")
+												}
+											}
+										]
+									}),
+								],
 							}),
 						],
 					}),

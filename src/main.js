@@ -12,6 +12,7 @@ import { Product } from "./components/home/product";
 import { CardsPage } from "./pages/cards/cards";
 import { CheckoutPage } from "./pages/checkout/checkout";
 import { ShippingAddres } from "./components/checkout/shipping-addres";
+import { ChooseShipping } from "./components/checkout/choose-shiping";
 
 const app = document.getElementById("app");
 
@@ -26,4 +27,5 @@ router.addRoute("/product", Product);
 router.addRoute("/card", CardsPage);
 router.addRoute("/checkout", CheckoutPage);
 router.addRoute("/shipping-address", ShippingAddres);
+router.addRoute("/choose-shipping", ChooseShipping);
 router.init(app);
