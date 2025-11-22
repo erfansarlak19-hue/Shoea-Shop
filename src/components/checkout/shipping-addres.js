@@ -4,7 +4,7 @@ import { router } from "../utils/router";
 export function ShippingAddres() {
 	return El({
 		element: "div",
-		className: "flex flex-col bg-[#f8f8f8] w-full h-232",
+		className: "flex flex-col bg-[#f9f9fa] w-full h-232",
 		children: [
 			El({
 				element: "div",
@@ -38,7 +38,7 @@ export function ShippingAddres() {
 			}),
 			El({
 				element: "div",
-				className: " flex flex-col gap-5 w-full bg-[#f8f8f8] pl-6 pr-6",
+				className: " flex flex-col gap-5 w-full bg-[#f9f9fa] pl-6 pr-6",
 				children: [
 					El({
 						element: "div",

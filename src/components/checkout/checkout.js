@@ -9,7 +9,7 @@ export function Checkout() {
 			El({
 				element: "div",
 				className:
-					"fixed w-full bg-[#f8f8f8] flex justify-between h-22 pl-6 pr-6 items-center ",
+					"fixed w-full bg-[#f9f9fa] flex justify-between h-22 pl-6 pr-6 items-center ",
 				children: [
 					El({
 						element: "div",
@@ -45,7 +45,7 @@ export function Checkout() {
 			El({
 				element: "div",
 				className:
-					" flex flex-col mt-22 gap-4 w-full  bg-[#f8f8f8] pl-6 pr-6 overflow-auto hide-scrollbar ",
+					" flex flex-col mt-22 mb-28 gap-4 w-full  bg-[#f9f9fa] pl-6 pr-6 overflow-auto hide-scrollbar pb-13 ",
 				children: [
 					El({
 						element: "p",
@@ -126,7 +126,7 @@ export function Checkout() {
 									El({
 										element: "div",
 										className:
-											"shrink-0 h-42 flex gap-4 pl-5 pr-5 rounded-3xl bg-[#ffffff] items-center",
+											"shrink-0 h-42 flex gap-4 pl-5 pr-5 rounded-3xl bg-[#ffffff] items-center ",
 										children: [
 											El({
 												element: "div",
@@ -227,7 +227,7 @@ export function Checkout() {
 							El({
 								element: "div",
 								className:
-									"flex bg-white h-17 pr-5 rounded-3xl justify-between items-center",
+									"flex bg-white h-17 pr-5 rounded-3xl justify-between items-center ",
 								children: [
 									El({
 										element: "img",
@@ -243,18 +243,121 @@ export function Checkout() {
 										element: "img",
 										className: "w-5",
 										src: "./public/svg/arrow-right-333-svgrepo-com.svg",
-										eventListener:[
+										eventListener: [
 											{
-												event:"click",
-												callback:()=>{
-													router.navigate("/choose-shipping")
-												}
-											}
-										]
+												event: "click",
+												callback: () => {
+													router.navigate("/choose-shipping");
+												},
+											},
+										],
 									}),
 								],
 							}),
 						],
+					}),
+					El({
+						element: "div",
+						className: "flex flex-col gap-3",
+						children: [
+							El({
+								element: "div",
+								className: "w-95 h-px bg-[#eeefef] my-2",
+							}),
+							El({
+								element: "p",
+								className: "font-semibold text-[20px]",
+								innerText: "Promo Code",
+							}),
+							El({
+								element: "div",
+								className:
+									"flex justify-between gap-4 items-center text-center ",
+								children: [
+									El({
+										element: "input",
+										className: " flex-1 pl-5 bg-[#f5f5f5] h-14 rounded-2xl",
+										placeholder: "Enter Promo Code",
+									}),
+									El({
+										element: "div",
+										className:
+											" bg-black w-11 h-11 rounded-full text-white pt-0.5 text-2xl",
+										innerText: "+",
+									}),
+								],
+							}),
+						],
+					}),
+					El({
+						element: "div",
+						className: "flex flex-col rounded-2xl gap-5 bg-white p-6",
+						children: [
+							El({
+								element: "div",
+								className: "flex justify-between",
+								children: [
+									El({
+										element: "div",
+										className: "text-[#605f5d]",
+										innerText: "Amount",
+									}),
+									El({
+										element: "div",
+										className: "text-[#444340]",
+										innerText: "$585.00",
+									}),
+								],
+							}),
+							El({
+								element: "div",
+								className: "flex justify-between",
+								children: [
+									El({
+										element: "div",
+										className: "text-[#605f5d]",
+										innerText: "Shipping",
+									}),
+									El({
+										element: "div",
+										className: "text-[#444340]",
+										innerText: "$585.00",
+									}),
+								],
+							}),
+							El({
+								element: "div",
+								className: "w-95 h-px bg-[#eeefef] my-2",
+							}),
+							El({
+								element: "div",
+								className: "flex justify-between",
+								children: [
+									El({
+										element: "div",
+										className: "text-[#605f5d]",
+										innerText: "Total",
+									}),
+									El({
+										element: "div",
+										className: "text-[#444340]",
+										innerText: "$585.00",
+									}),
+								],
+							}),
+						],
+					}),
+				],
+			}),
+			El({
+				element: "div",
+				className:
+					"flex justify-center shadow pl-6 pr-6 rounded-t-4xl items-center fixed bottom-0 bg-white w-full h-30",
+				children: [
+					El({
+						element: "button",
+						className: "bg-[#101010] h-14 rounded-4xl w-full text-white",
+						innerText: "Continue to Payment",
 					}),
 				],
 			}),

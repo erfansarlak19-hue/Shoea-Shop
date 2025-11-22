@@ -11,7 +11,7 @@ export function Cards() {
 			El({
 				element: "div",
 				className:
-					"fixed w-full bg-[#f8f8f8] flex justify-between h-22 pl-6 pr-6 items-center ",
+					"fixed w-full bg-[#f9f9fa] flex justify-between h-22 pl-6 pr-6 items-center ",
 				children: [
 					El({
 						element: "div",
@@ -47,7 +47,7 @@ export function Cards() {
 			El({
 				element: "div",
 				className:
-					"mt-22 pl-6 bg-[#f8f8f8] flex flex-col h-175 gap-6 pr-6 overflow-auto hide-scrollbar",
+					"mt-22 pl-6 bg-[#f9f9fa] flex flex-col h-175 gap-6 pr-6 overflow-auto hide-scrollbar",
 				children: [
 					El({
 						element: "div",
@@ -184,14 +184,14 @@ export function Cards() {
 						className:
 							"bg-[#101010] w-60 h-14 rounded-4xl pr-7 text-white shadow-",
 						innerText: "Checkout",
-						eventListener:[
+						eventListener: [
 							{
-								event:"click",
-								callback:()=>{
-									router.navigate("/checkout")
-								}
-							}
-						]
+								event: "click",
+								callback: () => {
+									router.navigate("/checkout");
+								},
+							},
+						],
 					}),
 					El({
 						element: "img",
