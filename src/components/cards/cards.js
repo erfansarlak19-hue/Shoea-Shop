@@ -1,7 +1,7 @@
 import { El } from "../utils/el";
 import { router } from "../utils/router";
 import { store } from "../utils/store";
-import { RemoveModal } from "./removeModal";
+import { RemoveModal } from "./remove-modal";
 
 export function Cards() {
 	return El({
@@ -184,6 +184,14 @@ export function Cards() {
 						className:
 							"bg-[#101010] w-60 h-14 rounded-4xl pr-7 text-white shadow-",
 						innerText: "Checkout",
+						eventListener:[
+							{
+								event:"click",
+								callback:()=>{
+									router.navigate("/checkout")
+								}
+							}
+						]
 					}),
 					El({
 						element: "img",

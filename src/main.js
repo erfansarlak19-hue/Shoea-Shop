@@ -10,7 +10,8 @@ import { HomePage } from "./pages/home/home";
 import { SearchPage } from "./pages/search/search";
 import { Product } from "./components/home/product";
 import { CardsPage } from "./pages/cards/cards";
-import { RemoveModal } from "./components/cards/removeModal";
+import { CheckoutPage } from "./pages/checkout/checkout";
+import { ShippingAddres } from "./components/checkout/shipping-addres";
 
 const app = document.getElementById("app");
 
@@ -23,4 +24,6 @@ router.addRoute("/home", HomePage);
 router.addRoute("/search", SearchPage);
 router.addRoute("/product", Product);
 router.addRoute("/card", CardsPage);
+router.addRoute("/checkout", CheckoutPage);
+router.addRoute("/shipping-address", ShippingAddres);
 router.init(app);
