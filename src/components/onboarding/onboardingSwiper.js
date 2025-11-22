@@ -83,7 +83,7 @@ export function OnboardingSwiper() {
 							El({
 								element: "img",
 								className: "h-150",
-								src: "./public/svg/W1.jpg",
+								src: "./public/jpg/W1.jpg",
 							}),
 							El({
 								element: "h1",
@@ -118,7 +118,7 @@ export function OnboardingSwiper() {
 							El({
 								element: "img",
 								className: "h-150",
-								src: "./public/svg/W2.jpg",
+								src: "./public/jpg/W2.jpg",
 							}),
 							El({
 								element: "h1",
@@ -153,7 +153,7 @@ export function OnboardingSwiper() {
 							El({
 								element: "img",
 								className: "h-150",
-								src: "./public/svg/W3.jpg",
+								src: "./public/jpg/W3.jpg",
 							}),
 							El({
 								element: "h1",

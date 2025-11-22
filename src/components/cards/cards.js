@@ -1,5 +1,7 @@
 import { El } from "../utils/el";
 import { router } from "../utils/router";
+import { store } from "../utils/store";
+import { RemoveModal } from "./removeModal";
 
 export function Cards() {
 	return El({
@@ -31,14 +33,14 @@ export function Cards() {
 						element: "img",
 						className: "w-7 ",
 						src: "./public/svg/search-svgrepo-com.svg",
-						eventListener:[
+						eventListener: [
 							{
-								event:"click",
-								callback:()=>{
-									router.navigate("/search")
-								}
-							}
-						]
+								event: "click",
+								callback: () => {
+									router.navigate("/search");
+								},
+							},
+						],
 					}),
 				],
 			}),
@@ -55,7 +57,7 @@ export function Cards() {
 							El({
 								element: "div",
 								className:
-									"w-42 h-32 rounded-3xl bg-[#f3f3f3] flex justify-center items-center",
+									"w-42 h-33 rounded-3xl bg-[#f3f3f3] flex justify-center items-center",
 								children: [
 									El({
 										element: "img",
@@ -82,6 +84,14 @@ export function Cards() {
 												element: "img",
 												className: "w-6",
 												src: "./public/svg/trash-bin-2-svgrepo-com.svg",
+												eventListener: [
+													{
+														event: "click",
+														callback: () => {
+															store.setState("isModalOpen", true);
+														},
+													},
+												],
 											}),
 										],
 									}),
@@ -146,7 +156,6 @@ export function Cards() {
 							}),
 						],
 					}),
-					
 				],
 			}),
 			El({
@@ -223,6 +232,7 @@ export function Cards() {
 					}),
 				],
 			}),
+			RemoveModal(),
 		],
 	});
 }

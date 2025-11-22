@@ -10,7 +10,7 @@ export function OnboardingPage2() {
 			El({
 				element: "div",
 				className:
-					"absolute inset-0 bg-[url('public/svg/WallpaperDog-205346101.jpg')] bg-cover bg-center",
+					"absolute inset-0 bg-[url('public/jpg/WallpaperDog-205346101.jpg')] bg-cover bg-center",
 			}),
 			El({
 				element: "div",
