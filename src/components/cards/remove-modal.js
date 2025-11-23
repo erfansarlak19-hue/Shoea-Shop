@@ -16,7 +16,7 @@ export function RemoveModal() {
 			const modalBox = El({
 				element: "div",
 				className:
-					"w-full bg-[#fbfbfb] flex flex-col gap-3 rounded-t-4xl h-110 p-6 shadow-2xl",
+					"w-full bg-[#fbfbfb] flex flex-col gap-3 rounded-t-4xl h-110 p-6 shadow-2xl animate-slideUp",
 				children: [
 					El({
 						element: "h2",

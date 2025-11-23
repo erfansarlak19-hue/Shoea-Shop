@@ -1,5 +1,7 @@
 import { El } from "../utils/el";
 import { router } from "../utils/router";
+import { store } from "../utils/store";
+import { PaymentSuccessModal } from "./payment-success-modal";
 
 export function PaymentMethods() {
 	return El({
@@ -280,9 +282,19 @@ export function PaymentMethods() {
 						element: "button",
 						className: "bg-[#101010] h-14 rounded-4xl w-full text-white",
 						innerText: "Confirm Payment",
+						eventListener: [
+							{
+								event: "click",
+								callback: () => {
+									// اینجا می‌تونی قبلش ولیدیشن و API بزنی
+									store.setState("isPaymentSuccessOpen", true);
+								},
+							},
+						],
 					}),
 				],
 			}),
+			PaymentSuccessModal(),
 		],
 	});
 }
