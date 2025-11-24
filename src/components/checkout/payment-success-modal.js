@@ -2,8 +2,6 @@ import { El } from "../utils/el.js";
 import { router } from "../utils/router.js";
 import { store } from "../utils/store.js";
 export function PaymentSuccessModal(){
-
-
   const modalRoot = El({
     element: "div",
     className:
@@ -77,6 +75,5 @@ export function PaymentSuccessModal(){
       modalRoot.classList.add("hidden");
     }
   });
-
   return modalRoot;
 }

@@ -286,7 +286,6 @@ export function PaymentMethods() {
 							{
 								event: "click",
 								callback: () => {
-									// اینجا می‌تونی قبلش ولیدیشن و API بزنی
 									store.setState("isPaymentSuccessOpen", true);
 								},
 							},
