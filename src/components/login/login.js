@@ -1,3 +1,4 @@
+import { apiRequest } from "../utils/api";
 import { El } from "../utils/el";
 import { router } from "../utils/router";
 
@@ -127,9 +128,7 @@ export function Login() {
 						eventListener: [
 							{
 								event: "click",
-								callback: () => {
-									router.navigate("/home");
-								},
+								callback: handleSignin
 							},
 						],
 					}),
@@ -138,6 +137,7 @@ export function Login() {
 		],
 	});
 }
+
 let type = "password";
 function togglePassword() {
 	if (type === "password") {
@@ -146,5 +146,32 @@ function togglePassword() {
 	} else {
 		document.getElementById("password").setAttribute("type", "password");
 		type = "password";
+	}
+}
+
+async function handleSignin() {
+	const username = document.getElementById("username").value.trim();
+	const password = document.getElementById("password").value.trim();
+
+	if (!username || !password) {
+		alert("نام کاربری و رمز عبور را وارد کنید");
+		return;
+	}
+
+	try {
+		const data = await apiRequest("/auth/login", {
+			method: "POST",
+			body: JSON.stringify({ 
+				username,
+				password,
+			}),
+		});
+
+		localStorage.setItem("token", data.token);
+		localStorage.setItem("user", JSON.stringify(data.user));
+
+		router.navigate("/home");
+	} catch (err) {
+		alert("خطا: " + err.message);
 	}
 }

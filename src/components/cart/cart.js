@@ -3,7 +3,7 @@ import { router } from "../utils/router";
 import { store } from "../utils/store";
 import { RemoveModal } from "./remove-modal";
 
-export function Cards() {
+export function Cart() {
 	return El({
 		element: "div",
 		className: "flex flex-col  w-full h-232",

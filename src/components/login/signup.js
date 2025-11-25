@@ -1,3 +1,4 @@
+import { apiRequest } from "../utils/api";
 import { El } from "../utils/el";
 import { router } from "../utils/router";
 
@@ -127,9 +128,7 @@ export function Signup() {
 						eventListener: [
 							{
 								event: "click",
-								callback: () => {
-									router.navigate("/login");
-								},
+								callback: handleSignup,
 							},
 						],
 					}),
@@ -138,6 +137,7 @@ export function Signup() {
 		],
 	});
 }
+
 let type = "password";
 function togglePassword() {
 	if (type === "password") {
@@ -146,5 +146,30 @@ function togglePassword() {
 	} else {
 		document.getElementById("password").setAttribute("type", "password");
 		type = "password";
+	}
+}
+
+async function handleSignup() {
+	const username = document.getElementById("username").value.trim();
+	const password = document.getElementById("password").value.trim();
+
+	if (!username || !password) {
+		alert("نام کاربری و رمز عبور را وارد کنید");
+		return;
+	}
+
+	try {
+		await apiRequest("/auth/signup", {
+			method: "POST",
+			body: JSON.stringify({
+				username,
+				password,
+			}),
+		});
+
+		alert("ثبت‌نام موفق بود، حالا وارد شوید.");
+		router.navigate("/login");
+	} catch (err) {
+		alert("خطای ثبت‌نام: " + err.message);
 	}
 }
