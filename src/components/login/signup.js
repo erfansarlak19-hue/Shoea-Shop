@@ -1,4 +1,3 @@
-import { apiRequest } from "../utils/api";
 import { El } from "../utils/el";
 import { router } from "../utils/router";
 
@@ -150,26 +149,37 @@ function togglePassword() {
 }
 
 async function handleSignup() {
-	const username = document.getElementById("username").value.trim();
-	const password = document.getElementById("password").value.trim();
+	const usernameInput = document.getElementById("username");
+	const passwordInput = document.getElementById("password");
+
+	const username = usernameInput.value.trim();
+	const password = passwordInput.value.trim();
 
 	if (!username || !password) {
-		alert("نام کاربری و رمز عبور را وارد کنید");
+		alert("لطفاً نام کاربری و رمز عبور را وارد کنید");
 		return;
 	}
 
 	try {
-		await apiRequest("/auth/signup", {
+		const response = await fetch("http://localhost:3000/auth/signup", {
 			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
 			body: JSON.stringify({
-				username,
-				password,
+				username: username,
+				password: password,
 			}),
 		});
 
-		alert("ثبت‌نام موفق بود، حالا وارد شوید.");
+		const data = await response.json();
+		if (!response.ok) {
+			alert("ثبت‌نام ناموفق بود: " + data.message);
+			return;
+		}
+		alert("ثبت‌نام با موفقیت انجام شد");
 		router.navigate("/login");
 	} catch (err) {
-		alert("خطای ثبت‌نام: " + err.message);
+		alert("خطا در ارتباط با سرور");
 	}
 }

@@ -1,6 +1,6 @@
-import { apiRequest } from "../utils/api";
 import { El } from "../utils/el";
 import { router } from "../utils/router";
+import { saveAuth } from "../utils/storage";
 
 export function Login() {
 	return El({
@@ -149,9 +149,12 @@ function togglePassword() {
 	}
 }
 
-async function handleSignin() {
-	const username = document.getElementById("username").value.trim();
-	const password = document.getElementById("password").value.trim();
+export async function handleSignin() {
+	const usernameInput = document.getElementById("username");
+	const passwordInput = document.getElementById("password");
+
+	const username = usernameInput.value.trim();
+	const password = passwordInput.value.trim();
 
 	if (!username || !password) {
 		alert("نام کاربری و رمز عبور را وارد کنید");
@@ -159,19 +162,28 @@ async function handleSignin() {
 	}
 
 	try {
-		const data = await apiRequest("/auth/login", {
+		const response = await fetch("http://localhost:3000/auth/login", {
 			method: "POST",
-			body: JSON.stringify({ 
-				username,
-				password,
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				username: username,
+				password: password,
 			}),
 		});
 
-		localStorage.setItem("token", data.token);
-		localStorage.setItem("user", JSON.stringify(data.user));
+		const data = await response.json();
 
+		if (!response.ok) {
+			alert("ورود ناموفق بود: " + data.message);
+			return;
+		}
+
+		saveAuth(data.token, data.user);
 		router.navigate("/home");
 	} catch (err) {
-		alert("خطا: " + err.message);
+		alert("خطا در ارتباط با سرور");
 	}
 }
+
