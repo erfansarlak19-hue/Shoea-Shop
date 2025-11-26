@@ -2,6 +2,24 @@ import { El } from "../utils/el";
 import { router } from "../utils/router";
 
 export function Header() {
+	const storedUser = localStorage.getItem("user");
+	let username = "Guest";
+
+	if (storedUser) {
+		try {
+			const obj = JSON.parse(storedUser);
+			if (obj?.username) {
+				username = obj.username;
+			}
+		} catch (e) {}
+	}
+
+	const hour = new Date().getHours();
+	let greeting = "Good Morning";
+	if (hour >= 12 && hour < 18) greeting = "Good Afternoon";
+	else if (hour >= 18 && hour < 24) greeting = "Good Evening";
+	else if (hour >= 0 && hour < 6) greeting = "Good Night";
+
 	return El({
 		element: "div",
 		className: "flex flex-col gap-2 h-39 w-107 fixed top-0",
@@ -17,12 +35,12 @@ export function Header() {
 							El({
 								element: "p",
 								className: "text-[#757475]",
-								innerText: "Good Morning 👋",
+								innerText: `${greeting} 👋`,
 							}),
 							El({
 								element: "p",
 								className: "font-bold",
-								innerText: "Erfan Sarlak",
+								innerText: username,
 							}),
 						],
 					}),
@@ -57,14 +75,14 @@ export function Header() {
 						element: "input",
 						className: "bg-[#fafafa] h-9 w-95 rounded-sm px-8 py-1",
 						placeholder: "Search",
-						eventListener:[
+						eventListener: [
 							{
-								event:"click",
-								callback:()=>{
-									router.navigate("/search")
-								}
-							}
-						]
+								event: "click",
+								callback: () => {
+									router.navigate("/search");
+								},
+							},
+						],
 					}),
 				],
 			}),

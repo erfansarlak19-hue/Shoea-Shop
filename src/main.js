@@ -8,12 +8,12 @@ import { Signup } from "./components/login/signup";
 import { OnboardingPage2 } from "./components/onboarding/onboarding2";
 import { OnboardingSwiper } from "./components/onboarding/onboardingSwiper";
 import { router } from "./components/utils/router";
-import { CartPage } from "./pages/Cart/Cart";
 import { CheckoutPage } from "./pages/checkout/checkout";
 import { HomePage } from "./pages/home/home";
 import { LoginPage } from "./pages/login/login";
 import { OnboardingPage } from "./pages/onboarding/onboarding";
 import { SearchPage } from "./pages/search/search";
+import { CartPage } from "./pages/cart/cart";
 
 const app = document.getElementById("app");
 
@@ -25,7 +25,7 @@ router.addRoute("/signup", Signup);
 router.addRoute("/home", HomePage);
 router.addRoute("/search", SearchPage);
 router.addRoute("/product", Product);
-router.addRoute("/card", CartPage);
+router.addRoute("/cart", CartPage);
 router.addRoute("/checkout", CheckoutPage);
 router.addRoute("/shipping-address", ShippingAddres);
 router.addRoute("/choose-shipping", ChooseShipping);
