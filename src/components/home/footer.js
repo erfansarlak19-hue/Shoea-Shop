@@ -20,7 +20,7 @@ export function Footer(){
 					{
 						event: "click",
 						callback: () => {
-							router.navigate("/card");
+							router.navigate("/cart");
 						},
 					},
 				],

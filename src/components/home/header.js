@@ -2,23 +2,23 @@ import { El } from "../utils/el";
 import { router } from "../utils/router";
 
 export function Header() {
- const storedUser = localStorage.getItem("user");
- let username = "Guest";
+	const storedUser = localStorage.getItem("user");
+	let username = "Guest";
 
- if (storedUser) {
+	if (storedUser) {
 		try {
 			const obj = JSON.parse(storedUser);
 			if (obj?.username) {
 				username = obj.username;
 			}
 		} catch (e) {}
- }
+	}
 
- const hour = new Date().getHours();
- let greeting = "Good Morning";
- if (hour >= 12 && hour < 18) greeting = "Good Afternoon";
- else if (hour >= 18 && hour < 24) greeting = "Good Evening";
- else if (hour >= 0 && hour < 6) greeting = "Good Night";
+	const hour = new Date().getHours();
+	let greeting = "Good Morning";
+	if (hour >= 12 && hour < 18) greeting = "Good Afternoon";
+	else if (hour >= 18 && hour < 24) greeting = "Good Evening";
+	else if (hour >= 0 && hour < 6) greeting = "Good Night";
 
 	return El({
 		element: "div",

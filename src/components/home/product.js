@@ -2,17 +2,215 @@ import { El } from "../utils/el";
 import { router } from "../utils/router";
 
 export function Product(){
+	const stored = localStorage.getItem("selectedSneaker");
+		let product = null;
+
+		try {
+			product = stored ? JSON.parse(stored) : null;
+		} catch (e) {
+			product = null;
+		}
+
+	const productName = product?.name || "Running Sportwear";
+	const productImage = product?.imageURL || "./";
+	let selectedSize = null;
+	let selectedColor = null;
+	let quantity = 0;
+	let quantityValueEl;
+	let totalPriceValueEl;
+	const sizeButtons = [];
+	const colorButtons = [];
+
+	function updateTotalPrice() {
+		const total = (product?.price || 0) * quantity;
+		totalPriceValueEl.innerText = "$ " + total.toFixed(2);
+	}
+
+	function updateSizeStyles() {
+			sizeButtons.forEach((btn) => {
+				if (btn.dataset.size === String(selectedSize)) {
+					btn.className =
+						"w-10 h-10 rounded-full border-2 border-black flex items-center justify-center font-semibold bg-black text-white";
+				} else {
+					btn.className =
+						"w-10 h-10 rounded-full border border-[#c4c4c4] flex items-center justify-center font-semibold text-[#212121]";
+				}
+			});
+		}
+
+		function createSizeButton(size) {
+			const btn = El({
+				element: "button",
+				innerText: size,
+				className:
+					"w-10 h-10 rounded-full border border-[#c4c4c4] flex items-center justify-center font-semibold text-[#212121]",
+				eventListener: [
+					{
+						event: "click",
+						callback: () => {
+							selectedSize = size;
+							updateSizeStyles();
+						},
+					},
+				],
+			});
+			btn.dataset.size = String(size);
+			sizeButtons.push(btn);
+			return btn;
+		}
+
+		function updateColorStyles() {
+			colorButtons.forEach((btn) => {
+				if (btn.dataset.color === selectedColor) {
+					btn.className =
+						"shrink-0 w-10 h-10 rounded-full flex items-center justify-center relative " +
+						btn.dataset.baseClass;
+					btn._check.classList.remove("hidden");
+				} else {
+					btn.className =
+						"shrink-0 w-10 h-10 rounded-full flex items-center justify-center relative " +
+						btn.dataset.baseClass;
+					btn._check.classList.add("hidden");
+				}
+			});
+		}
+
+
+
+			function createColorButton(colorClass, colorName) {
+				const check = El({
+					element: "span",
+					innerText: "✓",
+					className: "text-white font-bold hidden ",
+				});
+
+				const btn = El({
+					element: "button",
+					className:
+						"shrink-0 w-10 h-10 rounded-full flex items-center justify-center " +
+						colorClass,
+					children: [check],
+					eventListener: [
+						{
+							event: "click",
+							callback: () => {
+								selectedColor = colorName;
+								updateColorStyles();
+							},
+						},
+					],
+				});
+				btn.dataset.color = colorName;
+				btn.dataset.baseClass = colorClass;
+				btn._check = check;
+				colorButtons.push(btn);
+				return btn;
+			}
+
+  quantityValueEl = El({
+		element: "span",
+		className: "w-6 text-center",
+		innerText: String(quantity),
+	});
+
+	totalPriceValueEl = El({
+		element: "p",
+		className: "font-bold text-2xl",
+		innerText: "$ 0.00",
+	});
+
+	const minusBtn = El({
+			element: "button",
+			className:
+				"flex items-center justify-center text-xl",
+			innerText: "−",
+			eventListener: [
+				{
+					event: "click",
+					callback: () => {
+						if (quantity > 0) {
+							quantity--;
+							quantityValueEl.innerText = String(quantity);
+							updateTotalPrice();
+						}
+					},
+				},
+			],
+		});
+
+		const plusBtn = El({
+			element: "button",
+			className:
+				"flex items-center justify-center text-xl",
+			innerText: "+",
+			eventListener: [
+				{
+					event: "click",
+					callback: () => {
+						quantity++;
+						quantityValueEl.innerText = String(quantity);
+						updateTotalPrice();
+					},
+				},
+			],
+		});
+
+		const quantityRow = El({
+			element: "div",
+			className: "flex items-center justify-center gap-4 bg-[#f0f0f0] w-30 h-12 rounded-4xl",
+			children: [minusBtn, quantityValueEl, plusBtn],
+		});
+
+const addToCartBtn = El({
+	element: "button",
+	className:
+		"w-full h-15 rounded-full bg-black text-white font-semibold flex items-center justify-center gap-2 shadow-md mr-6",
+	children: [
+		El({
+			element: "span",
+			className:"pl-4",
+			innerText: "Add to Cart",
+		}),
+	],
+	eventListener: [
+		{
+			event: "click",
+			callback: () => {
+				if (!selectedSize && !selectedColor) {
+					alert("لطفاً قبل از ادامه، سایز و رنگ را انتخاب کنید.");
+					return;
+				}
+				if (!selectedSize) {
+					alert("لطفاً ابتدا سایز را انتخاب کنید.");
+					return;
+				}
+				if (!selectedColor) {
+					alert("لطفاً ابتدا رنگ را انتخاب کنید.");
+					return;
+				}
+				if (quantity <= 0) {
+					alert("لطفاً حداقل یک عدد از محصول را انتخاب کنید.");
+					return;
+				}
+				alert(
+					"سفارش با موفقیت ثبت شد"
+				);
+			},
+		},
+	],
+});
+
   return El({
 		element: "div",
 		className: "",
 		children: [
 			El({
 				element: "div",
-				className: "bg-[#f3f3f3] h-99 flex flex-col items-center",
+				className: "h-99 flex flex-col items-center",
 				children: [
 					El({
 						element: "div",
-						className: "h-12 pt-4 mr-90",
+						className: "absolute h-12 pt-4 mr-90",
 						children: [
 							El({
 								element: "img",
@@ -31,12 +229,12 @@ export function Product(){
 					}),
 					El({
 						element: "div",
-						className: " h-92 w-100 flex  justify-center items-center",
+						className: " w-full h-95 flex  justify-center items-center",
 						children: [
 							El({
 								element: "img",
 								className: "",
-								src: "./",
+								src: productImage,
 							}),
 						],
 					}),
@@ -52,12 +250,12 @@ export function Product(){
 						children: [
 							El({
 								element: "div",
-								className: "flex flex-col gap-4",
+								className: "flex flex-col gap-4 w-85",
 								children: [
 									El({
 										element: "h1",
-										className: "font-bold text-3xl text-[#212121]",
-										innerText: "Running Sportwear",
+										className: "font-bold text-3xl text-[#212121] truncate",
+										innerText: productName,
 									}),
 									El({
 										element: "div",
@@ -126,7 +324,7 @@ export function Product(){
 					}),
 					El({
 						element: "div",
-						className: "flex mt-24 p-6 gap-4",
+						className: "flex mt-24 p-6 gap-13",
 						children: [
 							El({
 								element: "div",
@@ -139,21 +337,18 @@ export function Product(){
 									}),
 									El({
 										element: "div",
-										className: "flex gap-3 overflow-x-auto hide-scrollbar",
+										className: "flex gap-3",
 										children: [
-											El({
-												element: "button",
-												className:
-													"shrink-0 border-2 border-[#717171] text-[#717171] h-10 w-10 rounded-full",
-												innerText: "40",
-											}),
+											createSizeButton(40),
+											createSizeButton(41),
+											createSizeButton(42),
 										],
 									}),
 								],
 							}),
 							El({
 								element: "div",
-								className: "flex flex-col gap-2",
+								className: "flex  flex-col gap-2 w-50",
 								children: [
 									El({
 										element: "p",
@@ -164,12 +359,11 @@ export function Product(){
 										element: "div",
 										className: "flex gap-3 overflow-x-auto hide-scrollbar",
 										children: [
-											El({
-												element: "button",
-												className:
-													"shrink-0  bg-amber-500 border-[#717171] h-10 w-10 font-bold rounded-3xl",
-												innerText: "",
-											}),
+											createColorButton("bg-black", "black"),
+											createColorButton("bg-orange-500", "orange"),
+											createColorButton("bg-blue-600", "blue"),
+											createColorButton("bg-red-600", "red"),
+											createColorButton("bg-amber-400", "yellow"),
 										],
 									}),
 								],
@@ -185,28 +379,7 @@ export function Product(){
 								className: "font-semibold",
 								innerText: "Quantity",
 							}),
-							El({
-								element: "div",
-								className:
-									"flex w-33 h-12 rounded-3xl justify-center items-center gap-5 bg-[#f3f3f3]",
-								children: [
-									El({
-										element: "p",
-										className: " text-3xl pb-7",
-										innerText: "_",
-									}),
-									El({
-										element: "p",
-										className: "font-semibold",
-										innerText: "0",
-									}),
-									El({
-										element: "p",
-										className: "text-2xl pb-2",
-										innerText: "+",
-									}),
-								],
-							}),
+							quantityRow,
 						],
 					}),
 					El({
@@ -220,30 +393,22 @@ export function Product(){
 						children: [
 							El({
 								element: "div",
-								className: "flex flex-col",
+								className: "flex flex-col w-45",
 								children: [
 									El({
 										element: "p",
 										className: "text-[12px] text-[#717171]",
 										innerText: "Total price",
 									}),
-									El({
-										element: "p",
-										className: "font-semibold text-2xl",
-										innerText: "$240.00",
-									}),
+									totalPriceValueEl,
 								],
 							}),
+							addToCartBtn,
 							El({
-								element: "button",
-								className: "bg-[#101010] w-60 h-14 pl-8 rounded-4xl text-white shadow-lg",
-								innerText: "Add to Cart",
+								element: "img",
+								className: "absolute right-47 bottom-12.5 w-5",
+								src: "./public/svg/bag-4-svgrepo-com.svg",
 							}),
-              El({
-                element:"img",
-                className:"absolute right-47 bottom-12.5 w-5",
-                src:"./public/svg/bag-4-svgrepo-com.svg"
-              })
 						],
 					}),
 				],

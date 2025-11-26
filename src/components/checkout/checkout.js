@@ -23,7 +23,7 @@ export function Checkout() {
 									{
 										event: "click",
 										callback: () => {
-											router.navigate("/card");
+											router.navigate("/cart");
 										},
 									},
 								],

@@ -4,7 +4,6 @@ import { getToken, getUser } from "../utils/storage";
 import { Footer } from "./footer";
 import { Header } from "./header";
 
-
 function createSneakerCard(sneaker) {
 	return El({
 		element: "div",
@@ -13,6 +12,7 @@ function createSneakerCard(sneaker) {
 			{
 				event: "click",
 				callback: () => {
+					localStorage.setItem("selectedSneaker", JSON.stringify(sneaker));
 					router.navigate("/product");
 				},
 			},
@@ -21,12 +21,12 @@ function createSneakerCard(sneaker) {
 			El({
 				element: "div",
 				className:
-					"w-46 h-46 rounded-3xl  bg-[#f3f3f3] flex justify-center items-center",
+					"w-46 h-46 rounded-3xl flex justify-center items-center",
 				children: [
 					El({
 						element: "img",
 						src: sneaker.imageURL,
-						className: "w-36 h-36 object-contain rounded-3xl",
+						className: "w-46 h-46 object-contain rounded-3xl",
 					}),
 				],
 			}),
@@ -44,9 +44,7 @@ function createSneakerCard(sneaker) {
 	});
 }
 
-
 export function Home() {
-
 	const token = getToken();
 	if (!token) {
 		router.navigate("/login");
@@ -55,18 +53,14 @@ export function Home() {
 	const user = getUser();
 	const username = user ? user.username : "Guest";
 
+	let allSneakers = [];
+	let activeBrand = "All";
+
 	const brandsRow = El({
 		element: "div",
 		className:
-			"flex pl-5 items-center gap-3 overflow-x-auto hide-scrollbar h-120 bg-white",
-		children: [
-			El({
-				element: "button",
-				className:
-					"shrink-0 border-2 border-[#343a40] h-10 px-4 text-[#343a40] text-center font-bold rounded-3xl",
-				innerText: "All",
-			}),
-		],
+			" flex pl-5 items-center gap-3 overflow-x-auto hide-scrollbar max-h-12 h-120 bg-white",
+		children: [createBrandButton("All")],
 	});
 
 	const productsGrid = El({
@@ -75,6 +69,58 @@ export function Home() {
 			"pl-5 pr-5 h-auto grid grid-cols-2 gap-5 overflow-auto hide-scrollbar",
 		children: [],
 	});
+
+	function renderProducts() {
+		productsGrid.innerHTML = "";
+		let filtered = allSneakers;
+
+		if (activeBrand !== "All") {
+			filtered = allSneakers.filter((item) => {
+				return (
+					item.brand && item.brand.toUpperCase() === activeBrand.toUpperCase()
+				);
+			});
+		}
+		filtered.forEach((item) => {
+			productsGrid.appendChild(createSneakerCard(item));
+		});
+	}
+
+	function updateBrandStyles() {
+		const buttons = brandsRow.children;
+		for (let i = 0; i < buttons.length; i++) {
+			const btn = buttons[i];
+			if (
+				(btn.dataset.brand || "").toUpperCase() === activeBrand.toUpperCase()
+			) {
+				btn.className =
+					"shrink-0 border-2 border-[#343a40] h-10 px-4 text-white text-center font-bold rounded-3xl bg-[#343a40]";
+			} else {
+				btn.className =
+					"shrink-0 border-2 border-[#343a40] h-10 px-4 text-[#343a40] text-center font-bold rounded-3xl bg-white";
+			}
+		}
+	}
+
+	function createBrandButton(brand) {
+		const btn = El({
+			element: "button",
+			innerText: brand,
+			eventListener: [
+				{
+					event: "click",
+					callback: () => {
+						activeBrand = brand;
+						updateBrandStyles();
+						renderProducts();
+					},
+				},
+			],
+		});
+		btn.dataset.brand = brand;
+		return btn;
+	}
+
 
 	fetch("http://localhost:3000/sneaker/brands", {
 		method: "GET",
@@ -85,16 +131,12 @@ export function Home() {
 		.then((res) => res.json())
 		.then((brands) => {
 			brands.forEach((brand) => {
-				const btn = El({
-					element: "button",
-					className:
-						"shrink-0 border-2 border-[#343a40] h-10 px-4 text-[#343a40] text-center font-bold rounded-3xl",
-					innerText: brand,
-				});
+				if (brand.toUpperCase() === "ALL") return;
+				const btn = createBrandButton(brand);
 				brandsRow.appendChild(btn);
 			});
-		})
-		.catch((err) => {
+			updateBrandStyles();
+		}).catch((err) => {
 			console.log("خطا در گرفتن برندها:", err);
 		});
 
@@ -106,11 +148,8 @@ export function Home() {
 	})
 		.then((res) => res.json())
 		.then((data) => {
-			const list = data.data || [];
-			list.forEach((item) => {
-				const card = createSneakerCard(item);
-				productsGrid.appendChild(card);
-			});
+			allSneakers = data.data || [];
+			renderProducts();
 		})
 		.catch((err) => {
 			console.log("خطا در گرفتن محصولات:", err);
