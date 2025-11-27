@@ -21,6 +21,32 @@ export function Product(){
 	const sizeButtons = [];
 	const colorButtons = [];
 
+	function saveToCart(cartItem) {
+		const existing = localStorage.getItem("cart");
+		let cart = [];
+
+		try {
+			cart = existing ? JSON.parse(existing) : [];
+		} catch (e) {
+			cart = [];
+		}
+
+		const found = cart.find(
+			(item) =>
+				item.productId === cartItem.productId &&
+				item.size === cartItem.size &&
+				item.color === cartItem.color
+		);
+		if (found) {
+			found.quantity += cartItem.quantity;
+			found.totalPrice = found.quantity * found.price;
+		} else {
+			cart.push(cartItem);
+		}
+
+		localStorage.setItem("cart", JSON.stringify(cart));
+	}
+
 	function updateTotalPrice() {
 		const total = (product?.price || 0) * quantity;
 		totalPriceValueEl.innerText = "$ " + total.toFixed(2);
@@ -168,7 +194,7 @@ const addToCartBtn = El({
 	children: [
 		El({
 			element: "span",
-			className:"pl-4",
+			className: "pl-4",
 			innerText: "Add to Cart",
 		}),
 	],
@@ -192,9 +218,20 @@ const addToCartBtn = El({
 					alert("لطفاً حداقل یک عدد از محصول را انتخاب کنید.");
 					return;
 				}
-				alert(
-					"سفارش با موفقیت ثبت شد"
-				);
+				
+				const price = product?.price || 0;
+				const cartItem = {
+					productId: product?._id || product?.id || productName, // یه شناسه برای محصول
+					name: productName,
+					imageURL: productImage,
+					price: price,
+					size: selectedSize,
+					color: selectedColor,
+					quantity: quantity,
+					totalPrice: price * quantity,
+				};
+				saveToCart(cartItem);
+				alert("محصول با موفقیت به سبد خرید اضافه شد ");
 			},
 		},
 	],

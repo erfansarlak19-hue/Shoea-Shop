@@ -8,6 +8,11 @@ export function RemoveModal() {
 			"fixed inset-0 z-40 hidden flex items-end justify-center bg-black/40 backdrop-blur-sm",
 	});
 
+const isOpen = store.getState("isModalOpen");
+if (isOpen) {
+	modalRoot.classList.remove("hidden");
+}
+
 	store.subscribe("isModalOpen", (isOpen) => {
 		if (isOpen) {
 			modalRoot.classList.remove("hidden");
@@ -150,7 +155,26 @@ export function RemoveModal() {
 									{
 										event: "click",
 										callback: () => {
+											const index = store.getState("deleteIndex");
+											const stored = localStorage.getItem("cart");
+											let cart = [];
+											try {
+												cart = stored ? JSON.parse(stored) : [];
+											} catch (e) {
+												cart = [];
+											}
+											if (
+												index !== null &&
+												index !== undefined &&
+												index >= 0 &&
+												index < cart.length
+											) {
+												cart.splice(index, 1);
+												localStorage.setItem("cart", JSON.stringify(cart));
+											}
+											store.setState("cartChanged", Date.now());
 											store.setState("isModalOpen", false);
+											store.setState("deleteIndex", null);
 										},
 									},
 								],
@@ -164,6 +188,5 @@ export function RemoveModal() {
 			modalRoot.classList.add("hidden");
 		}
 	});
-
 	return modalRoot;
 }
